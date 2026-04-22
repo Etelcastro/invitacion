@@ -1,188 +1,487 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación | Café Tierra Viva</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación | Café Tierra Viva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --verde:#1f5a43;
+      --verde-oscuro:#14392b;
+      --dorado:#c8a45d;
+      --dorado-oscuro:#b88f46;
+      --crema:#f7f0e4;
+      --crema-2:#efe5d3;
+      --cafe:#5b3a29;
+      --texto:#243329;
+      --blanco:#ffffff;
+      --sombra:0 24px 60px rgba(20,57,43,.18);
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:'Montserrat',sans-serif;
-  background:linear-gradient(#e7efe8,#f6efe3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-.card{
-  max-width:420px;
-  width:100%;
-  background:#f7f0e4;
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,0.15);
-  text-align:center;
-}
+    body{
+      font-family:'Montserrat',sans-serif;
+      color:var(--texto);
+      background:
+        radial-gradient(circle at top left, rgba(200,164,93,.20), transparent 18%),
+        radial-gradient(circle at bottom right, rgba(31,90,67,.16), transparent 24%),
+        linear-gradient(180deg, #e7efe8 0%, #f6efe3 100%);
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:18px;
+    }
 
-.top{
-  height:12px;
-  background:linear-gradient(90deg,#1f5a43,#c8a45d,#1f5a43);
-}
+    .card{
+      width:100%;
+      max-width:470px;
+      background:linear-gradient(180deg, rgba(247,240,228,.98), rgba(241,233,219,.98));
+      border-radius:34px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--sombra);
+      border:2px solid rgba(200,164,93,.55);
+      animation:entrada .85s ease;
+    }
 
-.content{
-  padding:25px;
-}
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:14px;
+      border:1px solid rgba(200,164,93,.34);
+      border-radius:24px;
+      pointer-events:none;
+    }
 
-.logo{
-  width:120px;
-  margin:10px auto;
-}
+    .top-band{
+      height:16px;
+      background:linear-gradient(90deg,var(--verde),var(--dorado),var(--verde));
+    }
 
-h1{
-  font-family:'Playfair Display',serif;
-  color:#14392b;
-  font-size:28px;
-  margin:10px 0;
-}
+    .content{
+      position:relative;
+      padding:26px 22px 24px;
+      text-align:center;
+      background:
+        linear-gradient(rgba(255,255,255,.60), rgba(255,255,255,.80)),
+        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80') center/cover;
+    }
 
-.sub{
-  color:#1f5a43;
-  font-weight:800;
-}
+    .content::before,
+    .content::after{
+      content:"✦";
+      position:absolute;
+      top:18px;
+      color:rgba(200,164,93,.6);
+      font-size:20px;
+      font-weight:700;
+    }
 
-.tag{
-  color:#5b3a29;
-  margin-bottom:15px;
-}
+    .content::before{ left:24px; }
+    .content::after{ right:24px; }
 
-.info{
-  background:white;
-  margin:10px 0;
-  padding:12px;
-  border-radius:12px;
-  text-align:left;
-}
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:7px 14px;
+      border-radius:999px;
+      background:rgba(200,164,93,.15);
+      color:#9b7434;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
 
-.countdown{
-  background:#1f5a43;
-  color:white;
-  padding:10px;
-  border-radius:12px;
-  margin:15px 0;
-}
+    .logo-wrap{
+      width:132px;
+      height:132px;
+      margin:0 auto 16px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(circle at center, rgba(255,255,255,.96), rgba(255,255,255,.72));
+      border:2px solid rgba(200,164,93,.58);
+      box-shadow:0 10px 28px rgba(20,57,43,.14);
+      overflow:hidden;
+    }
 
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
+    .logo{
+      width:88%;
+      height:88%;
+      object-fit:contain;
+      border-radius:50%;
+    }
 
-.btn{
-  flex:1;
-  padding:10px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
-  text-align:center;
-}
+    h1{
+      font-family:'Playfair Display',serif;
+      color:var(--verde-oscuro);
+      font-size:2.2rem;
+      line-height:1.05;
+      margin-bottom:8px;
+    }
 
-.btn1{background:#1f5a43;color:white;}
-.btn2{background:white;color:#1f5a43;border:1px solid #1f5a43;}
-.btn3{background:#c8a45d;color:white;width:100%;}
+    .brand{
+      color:var(--verde);
+      font-weight:800;
+      font-size:1.05rem;
+      margin-bottom:3px;
+    }
 
-.footer{
-  background:#1f5a43;
-  color:white;
-  padding:10px;
-  font-size:13px;
-}
-</style>
+    .tagline{
+      color:var(--cafe);
+      font-size:.95rem;
+      font-weight:500;
+      margin-bottom:18px;
+    }
+
+    .divider{
+      width:92px;
+      height:3px;
+      margin:0 auto 18px;
+      border-radius:999px;
+      background:linear-gradient(90deg, transparent, var(--dorado), transparent);
+    }
+
+    .invite-text{
+      max-width:330px;
+      margin:0 auto 20px;
+      font-size:1rem;
+      line-height:1.6;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(31,90,67,.10);
+      border-radius:16px;
+      padding:14px 16px;
+    }
+
+    .details{
+      display:grid;
+      gap:12px;
+      margin:0 0 20px;
+    }
+
+    .detail{
+      background:rgba(255,255,255,.88);
+      border-radius:18px;
+      padding:14px;
+      display:grid;
+      grid-template-columns:48px 1fr;
+      gap:12px;
+      align-items:center;
+      text-align:left;
+      border:1px solid rgba(31,90,67,.10);
+      box-shadow:0 8px 20px rgba(20,57,43,.06);
+    }
+
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg,var(--verde),var(--verde-oscuro));
+      color:#fff;
+      font-size:1.2rem;
+      font-weight:700;
+    }
+
+    .detail small{
+      display:block;
+      font-size:.74rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#6b736d;
+      font-weight:800;
+      margin-bottom:4px;
+    }
+
+    .detail strong{
+      display:block;
+      font-size:1rem;
+      line-height:1.35;
+      color:var(--texto);
+    }
+
+    .countdown{
+      background:linear-gradient(135deg,var(--verde),#355f49);
+      color:var(--blanco);
+      border-radius:20px;
+      padding:14px 14px 16px;
+      box-shadow:0 12px 28px rgba(20,57,43,.22);
+      margin-bottom:20px;
+    }
+
+    .countdown-title{
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      opacity:.9;
+      margin-bottom:10px;
+    }
+
+    .time-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .time-box{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:10px 4px;
+    }
+
+    .time-box span{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1;
+      margin-bottom:4px;
+    }
+
+    .time-box small{
+      display:block;
+      font-size:.66rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.86;
+    }
+
+    .actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:16px;
+    }
+
+    .btn{
+      border:none;
+      text-decoration:none;
+      border-radius:16px;
+      padding:14px 12px;
+      font-weight:800;
+      font-size:.94rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      cursor:pointer;
+      transition:transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+      box-shadow:0 10px 20px rgba(20,57,43,.10);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      opacity:.97;
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg,var(--verde),var(--verde-oscuro));
+      color:#fff;
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--verde-oscuro);
+      border:1px solid rgba(31,90,67,.16);
+    }
+
+    .btn-full{
+      grid-column:1 / -1;
+      background:linear-gradient(180deg,var(--dorado),var(--dorado-oscuro));
+      color:#fff;
+    }
+
+    .closing{
+      max-width:320px;
+      margin:0 auto;
+      font-size:1rem;
+      line-height:1.55;
+      font-weight:700;
+      color:var(--verde-oscuro);
+    }
+
+    .footer-band{
+      background:linear-gradient(90deg,var(--verde),#2d6548);
+      color:#fff;
+      text-align:center;
+      padding:14px 16px;
+      font-size:.86rem;
+      font-weight:600;
+      letter-spacing:.03em;
+    }
+
+    @keyframes entrada{
+      from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width:430px){
+      body{ padding:12px; }
+      .content{ padding:22px 16px 22px; }
+      h1{ font-size:1.9rem; }
+      .time-box span{ font-size:1.12rem; }
+      .actions{ grid-template-columns:1fr; }
+      .btn-full{ grid-column:auto; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <section class="card">
+    <div class="top-band"></div>
 
-<div class="top"></div>
+    <div class="content">
+      <div class="eyebrow">Invitación especial</div>
 
-<div class="content">
+      <div class="logo-wrap">
+        <img src="logo.png" class="logo" alt="Logo Café Tierra Viva">
+      </div>
 
-<img src="logo.png" class="logo">
+      <h1>Inauguración</h1>
+      <div class="brand">Café Tierra Viva</div>
+      <div class="tagline">Un Nuevo Amanecer</div>
 
-<h1>Inauguración</h1>
-<div class="sub">Café Tierra Viva</div>
-<div class="tag">Un Nuevo Amanecer</div>
+      <div class="divider"></div>
 
-<p>Te invitamos a este gran momento para nuestra cooperativa.</p>
+      <p class="invite-text">
+        Te invitamos a compartir con nosotros la <b>inauguración oficial</b> de nuestra cooperativa,
+        un momento especial para celebrar el inicio de una nueva etapa de trabajo, unidad y esperanza.
+      </p>
 
-<div class="info">📅 <b>Sábado 25 de abril 2026</b></div>
-<div class="info">🕖 <b>7:00 PM</b></div>
-<div class="info">📍 <b>Caserío Juan Velasco Alvarado</b></div>
+      <div class="details">
+        <div class="detail">
+          <div class="icon">📅</div>
+          <div>
+            <small>Fecha</small>
+            <strong>Sábado 25 de abril de 2026</strong>
+          </div>
+        </div>
 
-<div class="countdown">
-⏳ Faltan:
-<div id="tiempo"></div>
-</div>
+        <div class="detail">
+          <div class="icon">🕖</div>
+          <div>
+            <small>Hora</small>
+            <strong>7:00 p. m.</strong>
+          </div>
+        </div>
 
-<div class="buttons">
-<a class="btn btn1" href="https://maps.google.com" target="_blank">Ubicación</a>
-<a class="btn btn2" href="https://wa.me/51974112180" target="_blank">Confirmar</a>
-<button class="btn btn3" onclick="calendar()">Agregar al calendario</button>
-</div>
+        <div class="detail">
+          <div class="icon">📍</div>
+          <div>
+            <small>Lugar</small>
+            <strong>Caserío Juan Velasco Alvarado</strong>
+          </div>
+        </div>
+      </div>
 
-<p><b>Te esperamos para celebrar juntos.</b></p>
+      <div class="countdown">
+        <div class="countdown-title">Cuenta regresiva</div>
+        <div class="time-grid">
+          <div class="time-box">
+            <span id="dias">00</span>
+            <small>Días</small>
+          </div>
+          <div class="time-box">
+            <span id="horas">00</span>
+            <small>Horas</small>
+          </div>
+          <div class="time-box">
+            <span id="minutos">00</span>
+            <small>Min</small>
+          </div>
+          <div class="time-box">
+            <span id="segundos">00</span>
+            <small>Seg</small>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://maps.google.com" target="_blank" rel="noopener noreferrer">📍 Ver ubicación</a>
+        <a class="btn btn-secondary" href="https://wa.me/51974112180?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20inauguraci%C3%B3n%20de%20Caf%C3%A9%20Tierra%20Viva." target="_blank" rel="noopener noreferrer">💬 Confirmar</a>
+        <button class="btn btn-full" onclick="descargarICS()">📅 Agregar al calendario</button>
+      </div>
 
-<div class="footer">
-Café que une, tierra que florece, futuro que crece
-</div>
+      <p class="closing">
+        Te esperamos para celebrar juntos este gran paso.
+      </p>
+    </div>
 
-</div>
+    <div class="footer-band">
+      Café que une, tierra que florece, futuro que crece.
+    </div>
+  </section>
 
-<script>
-const fecha=new Date("2026-04-25T19:00:00");
+  <script>
+    const fechaEvento = new Date("2026-04-25T19:00:00");
 
-function actualizar(){
-const ahora=new Date();
-const d=fecha-ahora;
+    function actualizarContador() {
+      const ahora = new Date();
+      const diferencia = fechaEvento - ahora;
 
-if(d<=0){document.getElementById("tiempo").innerHTML="¡Hoy es el evento!";return;}
+      if (diferencia <= 0) {
+        document.getElementById("dias").textContent = "00";
+        document.getElementById("horas").textContent = "00";
+        document.getElementById("minutos").textContent = "00";
+        document.getElementById("segundos").textContent = "00";
+        return;
+      }
 
-const dias=Math.floor(d/(1000*60*60*24));
-const horas=Math.floor((d/(1000*60*60))%24);
-const min=Math.floor((d/(1000*60))%60);
-const seg=Math.floor((d/1000)%60);
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
 
-document.getElementById("tiempo").innerHTML=
-dias+"d "+horas+"h "+min+"m "+seg+"s";
-}
+      document.getElementById("dias").textContent = String(dias).padStart(2, "0");
+      document.getElementById("horas").textContent = String(horas).padStart(2, "0");
+      document.getElementById("minutos").textContent = String(minutos).padStart(2, "0");
+      document.getElementById("segundos").textContent = String(segundos).padStart(2, "0");
+    }
 
-setInterval(actualizar,1000);
-actualizar();
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
 
-function calendar(){
-const data=`BEGIN:VCALENDAR
+    function descargarICS() {
+      const contenido = `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
-SUMMARY:Inauguración Café Tierra Viva
+SUMMARY:Inauguración de la Cooperativa Café Tierra Viva
 DTSTART:20260426T000000Z
 DTEND:20260426T020000Z
 LOCATION:Caserío Juan Velasco Alvarado
+DESCRIPTION:Te invitamos a la inauguración de la Cooperativa Café Tierra Viva - Un Nuevo Amanecer.
 END:VEVENT
 END:VCALENDAR`;
 
-const blob=new Blob([data],{type:'text/calendar'});
-const link=document.createElement("a");
-link.href=URL.createObjectURL(blob);
-link.download="evento.ics";
-link.click();
-}
-</script>
+      const blob = new Blob([contenido], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "inauguracion_cafe_tierra_viva.ics";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  </script>
 
 </body>
 </html>
