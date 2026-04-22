@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación | Café Tierra Viva</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:linear-gradient(#e7efe8,#f6efe3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.card{
+  max-width:420px;
+  width:100%;
+  background:#f7f0e4;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  text-align:center;
+}
+
+.top{
+  height:12px;
+  background:linear-gradient(90deg,#1f5a43,#c8a45d,#1f5a43);
+}
+
+.content{
+  padding:25px;
+}
+
+.logo{
+  width:120px;
+  margin:10px auto;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:#14392b;
+  font-size:28px;
+  margin:10px 0;
+}
+
+.sub{
+  color:#1f5a43;
+  font-weight:800;
+}
+
+.tag{
+  color:#5b3a29;
+  margin-bottom:15px;
+}
+
+.info{
+  background:white;
+  margin:10px 0;
+  padding:12px;
+  border-radius:12px;
+  text-align:left;
+}
+
+.countdown{
+  background:#1f5a43;
+  color:white;
+  padding:10px;
+  border-radius:12px;
+  margin:15px 0;
+}
+
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+}
+
+.btn1{background:#1f5a43;color:white;}
+.btn2{background:white;color:#1f5a43;border:1px solid #1f5a43;}
+.btn3{background:#c8a45d;color:white;width:100%;}
+
+.footer{
+  background:#1f5a43;
+  color:white;
+  padding:10px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="top"></div>
+
+<div class="content">
+
+<img src="logo.png" class="logo">
+
+<h1>Inauguración</h1>
+<div class="sub">Café Tierra Viva</div>
+<div class="tag">Un Nuevo Amanecer</div>
+
+<p>Te invitamos a este gran momento para nuestra cooperativa.</p>
+
+<div class="info">📅 <b>Sábado 25 de abril 2026</b></div>
+<div class="info">🕖 <b>7:00 PM</b></div>
+<div class="info">📍 <b>Caserío Juan Velasco Alvarado</b></div>
+
+<div class="countdown">
+⏳ Faltan:
+<div id="tiempo"></div>
+</div>
+
+<div class="buttons">
+<a class="btn btn1" href="https://maps.google.com" target="_blank">Ubicación</a>
+<a class="btn btn2" href="https://wa.me/51974112180" target="_blank">Confirmar</a>
+<button class="btn btn3" onclick="calendar()">Agregar al calendario</button>
+</div>
+
+<p><b>Te esperamos para celebrar juntos.</b></p>
+
+</div>
+
+<div class="footer">
+Café que une, tierra que florece, futuro que crece
+</div>
+
+</div>
+
+<script>
+const fecha=new Date("2026-04-25T19:00:00");
+
+function actualizar(){
+const ahora=new Date();
+const d=fecha-ahora;
+
+if(d<=0){document.getElementById("tiempo").innerHTML="¡Hoy es el evento!";return;}
+
+const dias=Math.floor(d/(1000*60*60*24));
+const horas=Math.floor((d/(1000*60*60))%24);
+const min=Math.floor((d/(1000*60))%60);
+const seg=Math.floor((d/1000)%60);
+
+document.getElementById("tiempo").innerHTML=
+dias+"d "+horas+"h "+min+"m "+seg+"s";
+}
+
+setInterval(actualizar,1000);
+actualizar();
+
+function calendar(){
+const data=`BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:Inauguración Café Tierra Viva
+DTSTART:20260426T000000Z
+DTEND:20260426T020000Z
+LOCATION:Caserío Juan Velasco Alvarado
+END:VEVENT
+END:VCALENDAR`;
+
+const blob=new Blob([data],{type:'text/calendar'});
+const link=document.createElement("a");
+link.href=URL.createObjectURL(blob);
+link.download="evento.ics";
+link.click();
+}
+</script>
+
+</body>
+</html>
